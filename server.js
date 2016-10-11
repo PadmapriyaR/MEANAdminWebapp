@@ -12,11 +12,11 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var models_user = require('./Angular/Models/user.js');
 var mongojs = require("mongojs");
-var db = mongojs('mongodb://metoomentordb:metoomentordb@ds023490.mlab.com:23490/metoomentordb', ['AngularizeApp']);
+var db = mongojs('mongodb://websitedb:websitedb@ds025399.mlab.com:25399/websitedb', ['websitedb']);
 
 
 //connection database
-mongoose.connect('mongodb://metoomentordb:metoomentordb@ds023490.mlab.com:23490/metoomentordb');
+mongoose.connect('mongodb://websitedb:websitedb@ds025399.mlab.com:25399/websitedb');
 
 //import the routers
 var router = require('./Routes/router');
@@ -62,14 +62,14 @@ initPassport(passport);
 
 app.post('/createevents', function(req, res){
 	console.log(req.body);
-	db.AngularizeApp.insert(req.body, function(err, docs){
+	db.websitedb.insert(req.body, function(err, docs){
 		console.log('inserted');
 		res.json(docs);
 	});
 });
 app.get('/allevents', function(req, res){
 		console.log('I got a request from server');
-		db.AngularizeApp.find(function(err, docs) {
+		db.websitedb.find(function(err, docs) {
 			console.log(docs);
 			res.json(docs);
 		});
@@ -77,7 +77,7 @@ app.get('/allevents', function(req, res){
 app.get('/allevents/:id', function(req, res){
 	var id = req.params.id;
 	console.log(id);
-	db.AngularizeApp.findOne({ _id: mongojs.ObjectId(id)}, function(err, docs){
+	db.websitedb.findOne({ _id: mongojs.ObjectId(id)}, function(err, docs){
 		if(err)
 			res.send(err);
 		else
@@ -91,7 +91,7 @@ app.put('/createevents/:id', function(req, res){
 	console.log('params' + req.body.staus);
 	console.log('PUT' +req.body);
 	console.log('mongojs id' + mongojs.ObjectId(id));
-	db.AngularizeApp.update({_id: mongojs.ObjectId(id)}, {$set: {status: req.body.status}}, function(err, docs){
+	db.websitedb.update({_id: mongojs.ObjectId(id)}, {$set: {status: req.body.status}}, function(err, docs){
 		if(err)
 			res.send(err);
 		else
@@ -100,7 +100,7 @@ app.put('/createevents/:id', function(req, res){
 	});
 });
 app.delete('/deleteevent', function(req, res){
-	db.AngularizeApp.remove({}, function(err, docs){
+	db.websitedb.remove({}, function(err, docs){
 		console.log('Deleted');
 		res.json(docs);
 	});

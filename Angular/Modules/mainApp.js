@@ -1,5 +1,5 @@
 ﻿//Angular Starter App
-var main = angular.module("main", ['ui.router','ngRoute','ngResource'])
+var main = angular.module("main", ['ui.router','ngRoute','ngResource', 'ngStorage'])
 .run(function($http,$rootScope)
 {
     //defining global veriables
@@ -61,6 +61,12 @@ main.config([
             .state('home', {
                 url: '/',
                 templateUrl: 'Create.html',
+                caseInsensitiveMatch: true,
+                controller: 'MainController'
+            })
+            .state('insidemenu', {
+                url: '/insidemenu',
+                templateUrl: 'insidemenu.html',
                 caseInsensitiveMatch: true,
                 controller: 'MainController'
             })

@@ -1,5 +1,6 @@
-﻿//main controller
-main.controller("MainController", function ($scope, $http) {
+﻿
+//main controller
+main.controller("MainController", function ($scope, $http, $localStorage) {
     /*$scope.ABC = "ABC";
     $scope.phones = [
     {'name': 'Nexus S',
@@ -37,6 +38,19 @@ main.controller("MainController", function ($scope, $http) {
   		$scope.aboutagenda.push({'agenda':'topic'+newagenda});
   		};
 	
+	//Add menus
+	$scope.menus = [{'menu': 'menu1'}];
+	$scope.addNewMenu = function(){
+		var newMenu = $scope.menus.length+1;
+		$scope.menus.push({'menu':'menu'+newMenu});
+	}
+
+	//Menu
+	$scope.saveMenus = function(){
+		$localStorage.menus = $scope.menuDetails;
+		console.log('localStorage', $localStorage.menus); 
+		$scope.menuItem = $localStorage.menus;
+	};
 
 
   //create event
@@ -48,7 +62,8 @@ main.controller("MainController", function ($scope, $http) {
 			$scope.admin = '';
 			$scope.successTextAlert = "Event has been created";
 			$scope.showSuccessAlert = true;
-
+			$localStorage.save = response;
+			console.log('localStorage',$localStorage.save)
 			// switch flag
 			$scope.switchBool = function(value) {
    			$scope[value] = !$scope[value];

@@ -9,6 +9,11 @@
     <link href="bootstrap.css" rel="stylesheet" />
     <!--<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"/>
     <link rel="stylesheet" type="text/css" href="http://localhost:3000/lib/w3.css"/>-->
+    <style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+.w3-sidenav a,.w3-sidenav h4{padding:12px;}
+.w3-navbar a{padding-top:12px !important;padding-bottom:12px !important;}
+</style>
     <link href="w3.css" rel="stylesheet"/>
     <link href="Site.css" rel="stylesheet" />
     <script src="modernizr-2.6.2.js"></script>
@@ -18,9 +23,34 @@
     <script src="angular-route.js"></script>
     <script src="angular-ui-router.js"></script>
     <script src="angular-resource.js"></script>
+    <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
     <script src="/Modules/mainApp.js"></script>
     <script src="/Controllers/MainController.js"></script>
     <script src="/Controllers/AuthController.js"></script>
+    <script>
+// Get the Sidenav
+var mySidenav = document.getElementById("mySidenav");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidenav, and add overlay effect
+function w3_open() {
+    if (mySidenav.style.display === 'block') {
+        mySidenav.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidenav.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidenav with the close button
+function w3_close() {
+    mySidenav.style.display = "none";
+    overlayBg.style.display = "none";
+}
+</script>
 </head>
 <body>
     <!--<div class="navbar navbar-inverse navbar-fixed-top">
